@@ -218,6 +218,8 @@ NSTimer *leftSplitTimer;
     [kCurrentWindow standardWindowButton:NSWindowZoomButton].hidden = isHide;
 }
 - (IBAction)openFile:(id)sender {
+    NSLock *lock = [[NSLock alloc]init];
+    [lock lock];
     self.openPanel = [[NSOpenPanel alloc]init];
     [self.openPanel setAllowsMultipleSelection:YES];
     [self.openPanel setCanChooseFiles:YES];
@@ -235,6 +237,7 @@ NSTimer *leftSplitTimer;
             
         }
     }
+    [lock unlock];
 }
 
 -(void)setupBackground{
